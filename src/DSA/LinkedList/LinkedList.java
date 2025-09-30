@@ -109,7 +109,7 @@ public class LinkedList {
         return sizeOf;
     }
 
-    public static int Search(int key){
+    public  int Search(int key){
         int index=0;
         Node CurrentNode = head;
         while(CurrentNode.next != null){
@@ -122,11 +122,11 @@ public class LinkedList {
         return -1;
     }
 
-    public static int SearchRecursion(int key){
+    public  int SearchRecursion(int key){
         Node CurrentNode = head;
         return SearchRecursionHelper(key,CurrentNode,0);
     }
-    public static int SearchRecursionHelper(int key, Node CurrentNode,int index){
+    public  int SearchRecursionHelper(int key, Node CurrentNode,int index){
         if(CurrentNode.next == null){
             return -1;
         }
@@ -144,7 +144,7 @@ public class LinkedList {
 //    }
 
 
-    public static Node FindMid(){
+    public  Node FindMid(Node head){
         if (head == null) {
             return null; // list is empty
         }
@@ -156,6 +156,32 @@ public class LinkedList {
             fast = fast.next.next;
         }
         return  slow;
+    }
+
+    public boolean checkpalindrome(){
+        //find mid
+        Node mid = FindMid(head);
+
+        //reverse second half
+        Node prev = null;
+        Node Current = mid.next;
+        Node next = null;
+        while(Current != null){
+            next = Current.next;
+            Current.next= prev;
+            prev = Current;
+            Current = next;
+        }
+        Node head2 = prev;
+
+        //check both LL
+        Node current1 = head;
+        while(head2.next != null){
+            if(current1 != head2){
+                return false;
+            }
+        }
+        return true;
     }
     
     public static void reverseLinkedList(){
@@ -178,14 +204,13 @@ public class LinkedList {
     public static void main(String[] args) {
         LinkedList LL = new LinkedList();
 
-        LL.addLast(12);
-        LL.addLast(3);
-        LL.addLast(27);
-        LL.addLast(19);
+        LL.addLast(1);
+        LL.addLast(2);
+        LL.addLast(2);
+        LL.addLast(1);
 
         LL.printLL();
-        LL.reverseLinkedList();
-        LL.printLL();
+        System.out.println(LL.checkpalindrome());
 
     }
 }
