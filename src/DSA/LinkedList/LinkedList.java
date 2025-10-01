@@ -45,12 +45,18 @@ public class LinkedList {
     public void printLL(){
         Node currentNode = head;
         System.out.println("-----YOUR LINKED LIST----");
-        while(currentNode != null){
-            System.out.print(currentNode.data + "---->");
-            currentNode = currentNode.next;
+        if(detectTheCycle()){
+
+            System.out.println("Please remove the Cycle ");
+        }else{
+            while(currentNode != null){
+                System.out.print(currentNode.data + "---->");
+                currentNode = currentNode.next;
+            }
+            System.out.print("NULL");
+            System.out.println();
         }
-        System.out.print("NULL");
-        System.out.println();
+
 
     }
     public void removeFirst(){
@@ -204,6 +210,30 @@ public class LinkedList {
     }
         return false;
     }
+    public void RemoveCycle(){
+        //detectCycle
+        Node slow =head;
+        Node fast= head;
+        boolean Cycel = false;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast= fast.next.next;
+            if(slow == fast ){
+                Cycel = true;
+                break;
+            }
+        }
+
+        slow = head;
+        Node prev = null;
+        while(slow != fast){
+            slow= slow.next;
+            prev = fast;
+            fast = fast.next;
+        }
+
+        prev.next = null;
+    }
 
     public static void reverseLinkedList(){
         if(head == null || head.next == null){
@@ -225,11 +255,14 @@ public class LinkedList {
     public static void main(String[] args) {
         LinkedList LL = new LinkedList();
 
-        LL.addLast(1);
-        LL.addLast(2);
-        LL.addLast(2);
-        LL.addLast(1);
+        head = new Node(4);
+        head.next = new Node(5);
+        head.next.next = new Node(93);
+        head.next.next.next= new Node(323);
+        head.next.next.next.next = head.next;
 
+        LL.printLL();
+        LL.RemoveCycle();
         LL.printLL();
 
     }
