@@ -186,7 +186,7 @@ public class LinkedList {
 
 
 
-    public Boolean detactTheCycle(){
+    public Boolean detectTheCycle(){
         Node slow =head;
         Node fast= head;
         if(fast.next.next == null){
@@ -231,7 +231,6 @@ public class LinkedList {
         LL.addLast(1);
 
         LL.printLL();
-        System.out.println(LL.detactTheCycle());
 
     }
 }
