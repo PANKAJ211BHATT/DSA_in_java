@@ -158,32 +158,53 @@ public class LinkedList {
         return  slow;
     }
 
-    public boolean checkpalindrome(){
-        //find mid
-        Node mid = FindMid(head);
+        public boolean checkpalindrome(){
+            //find mid
+            Node mid = FindMid(head);
 
-        //reverse second half
-        Node prev = null;
-        Node Current = mid.next;
-        Node next = null;
-        while(Current != null){
-            next = Current.next;
-            Current.next= prev;
-            prev = Current;
-            Current = next;
-        }
-        Node head2 = prev;
-
-        //check both LL
-        Node current1 = head;
-        while(head2.next != null){
-            if(current1 != head2){
-                return false;
+            //reverse second half
+            Node prev = null;
+            Node Current = mid.next;
+            Node next = null;
+            while(Current != null){
+                next = Current.next;
+                Current.next= prev;
+                prev = Current;
+                Current = next;
             }
+            Node head2 = prev;
+
+            //check both LL
+            Node current1 = head;
+            while(head2.next != null){
+                if(current1 != head2){
+                    return false;
+                }
+            }
+            return true;
         }
-        return true;
+
+
+
+    public Boolean detactTheCycle(){
+        Node slow =head;
+        Node fast= head;
+        if(fast.next.next == null){
+            return false;
+        }
+
+    while(fast != null && fast.next != null ){
+
+        slow = slow.next;
+        fast = fast.next.next;
+        if(slow == fast){
+            return true;
+        }
+
     }
-    
+        return false;
+    }
+
     public static void reverseLinkedList(){
         if(head == null || head.next == null){
             return;
@@ -210,7 +231,7 @@ public class LinkedList {
         LL.addLast(1);
 
         LL.printLL();
-        System.out.println(LL.checkpalindrome());
+        System.out.println(LL.detactTheCycle());
 
     }
 }
