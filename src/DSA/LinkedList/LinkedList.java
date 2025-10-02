@@ -251,19 +251,50 @@ public class LinkedList {
         head = prev;
 
     }
+    public  void ZicZac(){
+        Node mid = FindMid(head);
+        
+        //reverse from mid to last
+
+        Node prev = null;
+        Node current = mid;
+        Node next = null;
+        
+        while(current != null){
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+        Node head2= prev;
+        
+        // make ZicZac
+        Node Temp1 = head;
+        Node Temp2 = head2;
+        while (Temp2.next != null) {
+            Node T1N = Temp1.next;
+            Node T2N = Temp2.next;
+            Temp1.next = Temp2;
+            Temp1 = T1N;
+            
+            Temp2.next = Temp1;
+            Temp2 = T2N;
+        }
+
+    }
 
     public static void main(String[] args) {
         LinkedList LL = new LinkedList();
 
-        head = new Node(4);
-        head.next = new Node(5);
-        head.next.next = new Node(93);
-        head.next.next.next= new Node(323);
-        head.next.next.next.next = head.next;
+        LL.addLast(3);
+        LL.addLast(5);
+        LL.addLast(7);
+        
 
         LL.printLL();
-        LL.RemoveCycle();
+        LL.ZicZac();
         LL.printLL();
+
 
     }
 }

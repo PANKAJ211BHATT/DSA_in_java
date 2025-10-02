@@ -32,7 +32,7 @@ public class Search_in_Rotated_Sorted {
             }
             if (nums[start] == nums[mid] && nums[mid] == nums[end]) {
                 start++;
-                end--;
+                 end--;
             }
             else if(nums[start] <= nums[mid]){
                 if(nums[start] <= target && target < nums[mid] ){
