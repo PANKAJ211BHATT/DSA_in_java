@@ -106,6 +106,12 @@ public class BinaryTreeB {
             }
            return 1+Math.max(heightOfTree(root.left) , heightOfTree(root.right));
         }
+        public int NumberofNodes(Node root){
+            if(root == null){
+                return 0; 
+            }
+            return 1+NumberofNodes(root.left)+NumberofNodes(root.right);
+        }
     }
     
     
@@ -113,8 +119,7 @@ public class BinaryTreeB {
         int[] nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
         BinaryTree tree = new BinaryTree();
         Node root = tree.TreeBuilder(nodes);
-        tree.levelOrder(root);
-        System.out.println(tree.heightOfTree(root));
+        System.out.println(tree.NumberofNodes(root));
 
     }
 }
