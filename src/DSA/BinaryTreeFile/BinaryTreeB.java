@@ -158,6 +158,39 @@ public class BinaryTreeB {
             Topviewhelper(root.right,x+1,map);
         }
         
+        public static void kThlevelPrint(Node root, int k ){
+            int i=0;
+            Queue<Node> Q= new LinkedList<>();
+            Q.add(root);
+            Q.add(null);
+            
+            while(!Q.isEmpty()){
+                Node current = Q.remove();
+                
+                if(current == null){
+                    i++;
+                    System.out.println();
+                    if(Q.isEmpty()){
+                        break;
+                    }else{
+                        Q.add(null);
+                    }
+                }else {
+                    if (i == k) {
+                        System.out.print(current.data + " ");
+                    }
+                    if (current.left != null) {
+                        Q.add(current.left);
+                    }
+                    if (current.right != null) {
+                        Q.add(current.right);
+                    }
+                }
+            }
+            
+            
+        }
+        
         
     }
     
@@ -170,7 +203,7 @@ public class BinaryTreeB {
         tree.levelOrder(root);
 
 
-        tree.Topview(root,0);
+        tree.kThlevelPrint(root,2);
       
 
     }
