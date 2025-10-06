@@ -118,15 +118,46 @@ public class BinaryTreeB {
             }
             return root.data + SumofNodes(root.left)+SumofNodes(root.right);
         }
+        public static boolean Isidenticall(Node root , Node subroot){
+            if(root ==null && subroot == null){
+                return true;
+            } else if (root == null || subroot == null || subroot.data != root.data) {
+                return false;
+            }
+         return Isidenticall(root.right, subroot.right) && Isidenticall(root.left , subroot.left);
+        }
+        public static boolean subtreePresent(Node root , Node subroot){
+
+            if (root == null) {
+                return false;
+            }
+            if(root.data == subroot.data){
+               
+                if(Isidenticall( root , subroot)){
+                   return true;
+               }
+           }
+            return subtreePresent(root.left,subroot) || subtreePresent(root.right,subroot);
+            
+        }
         
     }
     
     
     public static void main(String[] args) {
         int[] nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
+       
         BinaryTree tree = new BinaryTree();
         Node root = tree.TreeBuilder(nodes);
         tree.levelOrder(root);
+
+        Node subTree = new Node(2);
+        subTree.left = new Node(4);
+        subTree.right = new Node(5);
+        
+            System.out.println(BinaryTree.subtreePresent(root,subTree));
+
+        
       
 
     }
