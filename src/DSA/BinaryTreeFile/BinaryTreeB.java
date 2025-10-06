@@ -83,7 +83,7 @@ public class BinaryTreeB {
                 //ager current element null hi nhi h 
                  else{
                      // print kardo element ko 
-                    System.out.print(current.data + " ");
+                 
 
                     //ager current element ka left aur
                     // right null nhi h toh add krdo queue main
@@ -140,6 +140,24 @@ public class BinaryTreeB {
             return subtreePresent(root.left,subroot) || subtreePresent(root.right,subroot);
             
         }
+        public static void Topview(Node root, int x){
+            HashMap<Integer, Integer> map = new HashMap<>();
+            Topviewhelper(root,x,map);
+            for (Integer value : map.values()) {
+                System.out.print(value +" ");
+            }
+        }
+        public static void Topviewhelper(Node root , int x , HashMap map){
+            if(root == null){
+                return;
+                }if(!map.containsKey(x)){
+                    map.put(x,root.data);
+                }
+            Topviewhelper(root.left,x-1,map);
+            
+            Topviewhelper(root.right,x+1,map);
+        }
+        
         
     }
     
@@ -151,13 +169,8 @@ public class BinaryTreeB {
         Node root = tree.TreeBuilder(nodes);
         tree.levelOrder(root);
 
-        Node subTree = new Node(2);
-        subTree.left = new Node(4);
-        subTree.right = new Node(5);
-        
-            System.out.println(BinaryTree.subtreePresent(root,subTree));
 
-        
+        tree.Topview(root,0);
       
 
     }
