@@ -203,7 +203,7 @@ public class BinaryTreeB {
         tree.levelOrder(root);
 
 
-        tree.kThlevelPrint(root,2);
+        tree.kThlevelPrint(root,3);
       
 
     }
