@@ -190,6 +190,36 @@ public class BinaryTreeB {
             
             
         }
+
+        public static boolean getPath(Node root, int n, ArrayList<Integer> arr) {
+            if (root == null) {
+                return false;
+            }
+            arr.add(root.data);
+            if (root.data == n) {
+                return true;
+            }
+
+            if (getPath(root.left, n, arr) || getPath(root.right, n, arr)) {
+                return true;
+            }
+
+            arr.remove(arr.size() - 1); // backtrack
+            return false;
+        }
+        public int LCA(Node root , int n1, int n2){
+            ArrayList<Integer> arr1 = new ArrayList<>();
+            ArrayList<Integer> arr2 = new ArrayList<>();
+            getPath(root,n1,arr1);
+            getPath(root,n2,arr2);
+            int lac=0;
+            int i = 0;
+            while(arr1.get(i) == arr2.get(i)){
+                lac = arr1.get(i);
+                i++;
+            }
+            return lac;
+        }
         
         
     }
@@ -200,11 +230,9 @@ public class BinaryTreeB {
        
         BinaryTree tree = new BinaryTree();
         Node root = tree.TreeBuilder(nodes);
-        tree.levelOrder(root);
 
-
-        tree.kThlevelPrint(root,3);
-      
+        System.out.println(tree.LCA(root,4,5));
+        
 
     }
 }
