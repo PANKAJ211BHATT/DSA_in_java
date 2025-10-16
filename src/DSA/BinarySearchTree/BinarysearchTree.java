@@ -1,5 +1,6 @@
 package DSA.BinarySearchTree;
 
+
 import DSA.BinaryTreeFile.BinaryTreeB;
 
 public class BinarysearchTree {
@@ -42,7 +43,46 @@ public class BinarysearchTree {
             // return the unchanged node pointer
             return root;
         }
-        
-       
-    }
+
+        public void preorder(Node root){
+            if(root == null){
+                return;
+            }
+            System.out.print(root.data + "-->");
+            preorder(root.left);
+            preorder(root.right);
+        }
+        public void inorder(Node root){
+            if(root == null){
+                return ;
+            }
+
+            inorder(root.left);
+            System.out.print(root.data + "-->");
+            inorder(root.right);
+        }
+        public void postorder(Node root){
+            if(root == null){
+                return;
+            }
+
+            postorder(root.left);
+            postorder(root.right);
+            System.out.print(root.data + "-->");
+        }
+        }
+
+        public static void main(String[] args) {
+            BST tree = new BST();
+            tree.insert(50);
+            tree.insert(30);
+            tree.insert(70);
+            tree.insert(20);
+            tree.insert(40);
+            tree.insert(60);
+            tree.insert(80);
+            
+            tree.inorder(tree.root);
+        }
+    
 }
